@@ -83,17 +83,15 @@ class UserManagementSystem:
         else:
             print(f"L'utilisateur '{username}' n'existe pas.")
             
-    def delete_user(self):
-        user_name = input("Entrez le nom de l'utilisateur que vous souhaitez supprimer:")
-        if user_name in self.users['user_name'].values:
-            self.users = self.users [self.users['user_name'] != user_name]
-            print(f"Utilisateur {user_name} supprimé avec succès.✅")
+    def delete_user(self, user_name):
+        # Vérifiez le nom exact de la colonne dans votre DataFrame
+        # Par exemple, si c'est 'username' au lieu de 'user_name'
+        if user_name in self.users['username'].values:
+            self.users = self.users[self.users['username'] != user_name]
+            self.save_users()
+            print(f"L'utilisateur '{user_name}' a été supprimé avec succès.")
         else:
-            print(f"L'utilisateur {user_name} n'existe pas.❌")
-        return self.users
-
-    users = delete_user()
-
+            print(f"L'utilisateur '{user_name}' n'existe pas.")
 
     def ensure_admin_exists(self):
         # Vérifier s'il existe au moins un administrateur dans la liste des utilisateurs
