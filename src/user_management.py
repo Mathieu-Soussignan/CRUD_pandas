@@ -49,7 +49,7 @@ def creation_utilisateurs():
 
 def afficher_utilisateurs():
     if os.path.isfile(csv_file_path):
-    # Si il existe je lis le fichier
+    
         users_df = pd.read_csv(csv_file_path)
         
         if users_df.empty:
@@ -64,3 +64,57 @@ def afficher_utilisateurs():
 
 
 # -------------------------------------------------------------
+
+
+def modifier_utilisateur():
+    if not os.path.isfile(csv_file_path):
+        # Si le fichier n'existe pas je sors directement de la fonction
+        print("Le fichier 'users.csv' n'existe pas.")
+        return
+    
+    # Je lis le csv
+    users_df = pd.read_csv(csv_file_path)
+    
+    user_name = input("Veuillez entrer le nom d'utilisateur à modifier : ")
+    
+    if user_name in users_df["nom_utilisateur"].values:
+        print("Utilisateur trouvé.")
+        
+        new_user_name = input("Entrez le nouveau nom d'utilisateur (laisser vide pour ne pas modifier) : ")
+        new_password = input("Entrez le nouveau mot de passe (laisser vide pour ne pas modifier) : ")
+        new_email = input("Entrez la nouvelle adresse email (laisser vide pour ne pas modifierne) : ")
+
+        
+        if new_user_name:
+            users_df.loc[users_df["nom_utilisateur"] == user_name, "nom_utilisateur"] = new_user_name
+        if new_email:
+            users_df.loc[users_df["nom_utilisateur"] == user_name, "adresse_mail"] = new_email
+        if new_password:
+            # Je hash le nouveau mot de passe
+            users_df.loc[users_df["nom_utilisateur"] == user_name, "mot_de_passe"] = generate_password_hash(new_password)
+        
+        
+        users_df.to_csv(csv_file_path, index=False)
+        print("Informations de l'utilisateur mises à jour.")
+    else:
+        print("Utilisateur non trouvé.")
+
+
+def supprimer_utilisateur():
+    # Si le fichier n'existe pas je sors directement de la fonction
+    if not os.path.isfile(csv_file_path):
+        print("Le fichier 'users.csv' n'existe pas.")
+        return
+    # Je lis le csv
+    users_df = pd.read_csv(csv_file_path)
+    
+    user_name = input("Veuillez entrer le nom d'utilisateur à supprimer : ")
+    
+    # Si le nom_d'utilisateur existe pas dans la valeur de la colonne
+    if user_name in users_df["nom_utilisateur"].values:
+        # Je renvoie True si le nom d'utilisateur ne correspond pas au nom d'utilisateur que je veux supprimer
+        users_df = users_df[users_df["nom_utilisateur"] != user_name]
+        users_df.to_csv(csv_file_path, index=False)
+        print("Utilisateur supprimé.")
+    else:
+        print("Utilisateur non trouvé.")
