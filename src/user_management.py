@@ -72,12 +72,13 @@ class UserManagementSystem:
     
     def update_user(self, username: str, new_email: Optional[str] = None, new_password: Optional[str] = None):
         # Met à jour les informations de l'utilisateur
-        user = self.users[self.users['username'] == username]
-        if not user.empty:
+        user_index = self.users.index[self.users['username'] == username]
+        if not user_index.empty:
             if new_email:
-                user.at[0, 'email'] = new_email
+                self.users.loc[user_index, 'email'] = new_email
             if new_password:
-                user.at[0, 'password_hash'] = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+                new_hash = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+                self.users.loc[user_index, 'password_hash'] = new_hash
             self.save_users()
             print(f"Informations de l'utilisateur '{username}' mises à jour.")
         else:
