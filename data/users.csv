@@ -1,2 +1,5 @@
 username,email,password_hash,is_admin
 Mathieu,mathieu@admin.com,$2b$12$81vo2IS4nu7BQ.bWUpIyCeg9X/B3rNo.Effi3ASRZFtBLcAKc7S46,True
+toto,toto@,$2b$12$Pfixq0yjkJnXX8cIDZUrueOYwebArTLnCArjx7smI.lB2BjNyPUDG,False
+tata,tata@,$2b$12$eIzAkOXnSralCSvocUsrZO8ArYglplRG4cI7KLjNdUtLmk5y4ij4e,False
+titi,titi200@,$2b$12$Jd8ODiCB6rTU9zcdER6VkuPYOGaU0fdCWMpXJUPY7VJdbw24RVlJC,False
