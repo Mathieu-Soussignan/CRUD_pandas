@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd 
-from src import *
+# from src import *
 import os 
 from werkzeug.security import generate_password_hash
 
@@ -12,7 +12,6 @@ def test_creation_utilisateurs(monkeypatch):
     # Sauvegarde de l'ancien CSV
     if os.path.isfile('users.csv'):
         os.rename('users.csv', 'users_backup.csv')
-
 
     # similer l'entrée de l'utilisateur
     # iter() créer un itération à partir d'une liste de 3 valeurs. Cela permet de parcourir les valeurs une par une
