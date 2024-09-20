@@ -23,3 +23,4 @@ users = delete_user()
 # Afficher la liste des utilisateurs après suppression
 print("Liste des utilisateurs après suppression :")
 print(users)
+j
