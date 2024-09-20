@@ -1,0 +1,2 @@
+username,email,password_hash,is_admin
+Mathieu,mathieu@admin.com,$2b$12$81vo2IS4nu7BQ.bWUpIyCeg9X/B3rNo.Effi3ASRZFtBLcAKc7S46,True
