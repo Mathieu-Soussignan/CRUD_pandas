@@ -82,14 +82,17 @@ Pour exécuter les tests unitaires du projet, assurez-vous d'avoir installé les
 
 1. Installez les dépendances :
 
-```bash
+```
    pip install -r requirements.txt
+```
 
-```bash
-cd tests 
+```
+cd tests
+```
 
-```bash
-pytest -m test_user_managements -s 
+```
+pytest -m test_user_managements -s
+``` 
 
 
 
